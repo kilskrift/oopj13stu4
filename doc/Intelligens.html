@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <title>Intelligens</title>
+    <meta name="generator" content="muse.el">
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" title="style" href="../my-style.css">
+
+  </head>
+  <body>
+    <h1>Intelligens</h1>
+    <!-- Page published by Emacs Muse begins here -->
+<h2>Att vara ett intelligent får</h2>
+
+<p class="first">Jag har märkt att många studenter lägger ner en hel del tid på att
+bygga komplexa AI'n som ändå inte fungerar så bra. Min avsikt är att
+ge några tips för att underlätta för dig att konstruera ett bra AI. Du
+<em>måste</em> inte följa mina förslag. Jag ger några evalueringsfunktioner
+för att illustrera, men de är ej kompletta lösningar.</p>
+
+<p>Många spelprogram måste lösa följande problem:</p>
+
+<ul>
+<li>Du har en mängd av möjliga drag. Välj det bästa.</li>
+</ul>
+
+<p>En vanlig lösning är att definiera en <em>evalueringsfunktion</em>. Den
+tittar på de tänkbara dragen och den situation (på spelplanen) som vi
+hamnar i efter draget, och beräknar ett numeriskt värde som avspeglar
+hur bra draget är för spelaren. Ett högre värde betyder vanligtvis att
+draget är bättre.</p>
+
+<p>I ett schackprogram kan evalueringsfunktionen räkna de två spelarnas
+pjäser eller titta på pjäsernas relativa positioner etc. (I ett spel
+med två spelare är det oftast nödvändigt att ta hänsyn till de drag
+motspelaren kan göra men det är inte praktiskt i hagen där varje
+varelse är en spelare.)</p>
+
+<p>Vissa apekter är förstås viktigare än andra. Ett får letar efter gräs
+men om det ser en varg glömmer det gräset och försöker fly. Vi måste
+kombinera de olika aspekterna med hjälp av <em>vikter</em> som avspeglar
+deras betydelse.</p>
+
+<p>Ett får har åtta möjliga förflyttningar. Det kan eventuellt vara
+intressant att tillåta att ett får stannar på sin nuvarande position;
+om du är omgiven av vargar kan det vara bäst att inte röra på sig...</p>
+
+<p>För de positioner som följer på varje drag kan vi betrakta följande
+aspekter (ordnade i stigande vikt)...</p>
+
+<ul>
+<li>fortsätt i ungefär samma riktning som tidigare</li>
+
+<li>minimera avstånd till mat</li>
+
+<li>maximera avstånd till närmaste fiende (som du kan se)</li>
+</ul>
+
+<p>Eftersom evalueringsfunktionen måste returnera ett numeriskt värde
+måste vi hitta ett sätt att uttrycka varje aspekt som ett numeriskt
+värde.</p>
+
+<p>Eftersom avståndet till mat ska minimeras kan vi använda följande
+formler (där f är avståndet)
+<pre class="example">
+-f
+</pre>
+eller
+<pre class="example">
+100 / (1+f)
+</pre>
+för att uttrycka att det är bättre att vara nära maten. Båda uttrycken
+ger positioner nära mat ett högre poängtal. (Notera att om vi går till
+en ruta med gräs är f=0.)</p>
+
+<p>Om w är avståndet till närmaste varg kan vi använda
+<pre class="example">
+w-f
+</pre>
+som evalueringsfunktion, och därmed kombinera insikterna att det är
+bra att vara nära mat och bra att vara långt bort ifrån vargar. Men
+detta kan få ett får att närma sig en varg om den står på en
+grästuva. Det blir bättre om vi ger avståndet till vargar mycket större vikt,
+till exempel:
+<pre class="example">
+100*w - f
+</pre>
+På så sätt har avståndet till den närmaste plantan betydelse endast om
+det inte finns någon varg i närheten.</p>
+
+<p>Det finns förstås fler aspekter som ni måste ta hänsyn till. Det finns
+en regel om att djuret ska fortsätta i ungefär samma riktning som
+tidigare (om det varken ser mat eller fiender). Om ingen annan regel
+är applicerbar ska valet av ruta att flytta till ske slumpmässigt.
+Sen har vi regeln att ett djur ej får ställa sig på en ruta som
+blockeras av ett fast föremål. Det är inte säkert att det är lämpligt
+att låta evalueringsfunktionen hantera alla dessa aspekter.</p>
+
+<p>Kom också ihåg att evalueringen ska fungera bra både med mycket korta och mycket
+långa synavstånd.</p>
+
+
+
+<!-- Page published by Emacs Muse ends here -->
+  </body>
+</html>

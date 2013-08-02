@@ -1,0 +1,357 @@
+<html><head><!--
+%%% Denna specifikation är en modifiering av projektspecifikationen för
+%%% distanskursen Programvarukonstruktion II VT-99 som i sin tur
+%%% bygger på specifikationen för inlämningsuppgiften från kursen
+%%% Objektorienterad programmering HT-97. Originalspecifikationen för
+%%% OOP-97 är skriven av Mats Nordström (matsn@csd.uu.se) medan
+%%% specifikationen för PVK2-99 och modifieringen för OOP-99 är
+%%% skrivna av Robert Ottenhag (robott@csd.uu.se).
+%%% --------------------------------------------------------------------------
+%%% Omskriven för att passa projektspecifikationen för OOP-2002 av
+%%% Magnus Ågren och Jesper Wilhelmsson.
+%%% --------------------------------------------------------------------------
+%%% Än en gång hårt reviderad och omarbetad av Jesper W (jesperw@it.uu.se)
+%%% inför OOP HT-03.
+%%% --------------------------------------------------------------------------
+
+Än en gång anpassad för distanskursen Objektorienterad programmering
+med Java -04 av Sven-Olof Nyström och Magnus Ågren.
+
+Än en gång omhackad inför distanskursen våren -05 av Sven-Olof Nyström.
+Nytt för i år är att Java 5.0 används i den givna koden.
+
+Modifierad igen av S-O inför distanskursen -10.
+-->
+<title>OOP med Java: Uppgift 4</title>
+<link rel="stylesheet" type="text/css" title="style" href="../my-style.css"> 
+</head>
+
+
+ <body>
+<b>
+    <a href="http://www.uu.se/">UU</a> |
+    <a href="http://www.it.uu.se">IT</a> | 
+ <a href="https://www.it.uu.se/edu/course/homepage/oopjava/st13">
+
+    OOP med Java sommaren 2013</a> |
+ <a href="assign.html">
+    Uppgifter</a>
+</b><p>
+
+
+
+<h1>Uppgift 4: Simulering av ekologisk värld</h1>
+<p align="center">
+<img src="players.gif">
+</p>
+Er uppgift är att skriva en tickstyrd simulering av ekosystemet i en
+hage (eng. pasture). I hagen finns det djur och växter av olika
+slag. Hagen är omringad av ett staket och det kan även finnas staket
+på sina ställen inne i hagen.<p>
+
+Du får använda detta <a href="pasture" >program</a> som utgångspunkt.<p>
+
+Notera att programmen använder utökningar som är nya för Java 5.0.<p>
+
+Programmet implementerar en tickstyrd simulering med en enda invånare
+som rör sig slumpmässigt över planen utan att äta eller fortplanta
+sig.  Om du vill får du  modifiera ramverket eller skriva ett eget.
+<a href="simulering.html">Denna länk</a> ger mer information om hur en
+simulering kan implementeras.
+
+
+</p><h2>Modellen av hagens ekosystem</h2>
+
+Denna dynamiska modell av en hages ekosystem är naturligtvis mycket
+förenklad jämfört med verkligheten. <p>
+        
+Varje varelse och föremål som ingår i modellen av ekosystemet
+representerar egentligen en <em>population</em> av varelser eller
+föremål av den typen. Det är därför som modellen tillåter att varelser
+kan föröka sig utan att någon annan varelse av samma typ finns i
+närheten.
+
+</p><h3>Hagen</h3>
+
+Hagen utgörs av ett tvådimensionellt begränsat område med rektangulär
+form. Vi ser hagen uppifrån och bortser från eventuell kupering av
+marken. Det rektangulära området är indelat i ett rutnät. <p>
+
+
+
+<h3>Föremål och varelser i hagen</h3>
+Varje föremål och varelse i hagen ockuperar exakt en (1) ruta.
+Flera  föremål och varelser kan befinna sig på samma ruta vid samma
+tillfälle, om beteendet för de olika varelserna och föremålen
+tillåter det.<p>
+
+<ul>
+<li><em>Fasta föremål</em> tar upp plats genom att ockupera den ruta
+som de befinner sig på och inte tillåta något annat föremål
+att befinna sig på samma ruta. </p><p>
+
+<li><em>Staket</em> är det enda fasta föremål som ingår i denna
+modell av en hages ekosystem. Deras syfte är att ta upp plats
+för att hindra levande varelser från att förflytta sig till positionen.</p><p>
+
+<li><em>Levande varelser</em> kan föröka sig.  De dör om de är utan mat
+alltför länge eller om de blir uppätna av någon annan varelse.
+</p><p>
+
+<li><em>Växter</em> är levande varelser som förökar sig så länge det
+finns någon plats runt omkring dem att fortsätta växa på.
+Olika slags växter förökar sig olika ofta.</p><p>
+        
+<li><em>Grästuvor</em> är växter som förökar sig genom delning. De
+kan växa överallt utom där det finns fasta föremål.<p>
+
+Nej, grästuvor äter inte. De kan inte heller svälta ihjäl. 
+</p><p>
+
+
+
+<li><em>Djur</em> är levande varelser som kan föröka sig, olika ofta
+för olika slags djur, om vissa förutsättningar är uppfyllda. De kan
+också förflytta sig i hagen, olika snabbt för olika djur. Förflyttning
+sker en ruta i taget till en ruta i dess närmaste omgivning, dvs
+vertikalt, horisontellt, eller diagonalt. Ett djur äter mat om det
+befinner sig på samma position som maten. Se även figuren
+nedan.</p><p>
+
+<p align="center">
+<img src="new-hage.gif">
+</p>
+<p align="center">
+Närliggande rutor och möjlig förflyttning till dem
+          i hagen.
+</p>
+
+
+<li><em>Får</em> är djur som har vargar som fiender och som äter
+grästuvor.</p><p>
+
+<li><em>Vargar</em> är djur som inte har några fiender och som äter
+får.
+</ul>
+
+<h2>Intelligens hos får och vargar</h2>
+
+Som en del av uppgiften ska du implementera intelligens hos får och vargar.
+<p>
+
+Vargar och får har ett visst <em>synfält</em> som avgör hur långt de
+kan se för att upptäcka mat och fiender.<p>
+
+Regler för får:
+<ol>
+  <li>I första hand gäller att om fåret ser en varg, försöker det
+      springa ifrån den.</li>
+  <li>Om fåret ej ser någon varg försöker det röra sig mot rutor med gräs.</li>
+  <li>Om inget av ovanstående gäller, fortsätter det i ungefär samma
+      riktning som tidigare.</li>
+  <li>Som sista alternativ, välj en slumpmässig riktning.</li>
+
+</ol>
+
+Regler för vargar:
+<ol>
+  <li>Om du du kan se ett får, rör dig mot det.</li>
+
+  <li>Om ovanstående ej gäller, fortsätt i ungefär samma
+      riktning som tidigare.</li>
+  <li>Som sista alternativ, välj en slumpmässig riktning.</li>
+
+</ol>
+
+
+
+
+
+<h2>Mer detaljer om modellen av ekosystemet</h2>
+
+      Modellen som simuleras kan byggas ut hur mycket som helst och
+      när man väl kommer igång är det lätt att låta fantasin flöda. 
+      Nedan definieras en minimal uppgift som alla uppgiftslösningar
+      skall klara av. Utöver detta uppmuntras alla tänkbara
+      utökningar.
+
+<h3>Hagen</h3>
+
+Varje position i hagen kan endast innehålla ett föremål eller varelse
+<em>av samma slag</em>. Varje position i hagen kan dock innehålla
+flera objekt av olika slag, t.ex. vargar och grästuvor. Hagen ska
+innehålla staket, grästuvor, vargar och får.
+
+<h3>Simuleringstiden</h3>
+
+Simuleringstiden mäts i enheten <em>glan</em> (ett uråldrigt
+tidsmått som troligen är minst 200 000 glan gammalt och numera
+nästan glömt).
+
+<h3>Djuren</h3>
+
+Djur, dvs får och vargar, rör sig slumpmässigt över planen. När de
+hamnar på en position med mat äter de maten. Det tar visst antal
+glan för djuret att röra sig en ruta och ett djur kan leva i en viss
+tid (ett visst antal glan) innan det dör av svält. Ett djur kan börja
+föröka sig när det har uppnått en viss ålder och därefter tar det en
+viss tidsrymd innan det kan föröka sig igen. De kan bara föröka sig när
+det finns en ledig plats i dess omedelbara närhet och de har ätit minst en gång.
+De lever tills
+de dör av svält eller blir uppätna. <p> 
+
+<h3>Parametrar och egenskaper</h3>
+
+
+Simuleringen ska tillåta att man anger synfält och snabbhet hos får
+och vargar som parametrar vid start av programmet.<p>
+
+Övriga egenskaper har följande värden:
+
+</p><ol>
+  <!-- <li>Tiden det tar att röra sig mellan två rutor: Varg=7, Får=10. -->
+  <!-- </li> -->
+  <li>Tiden ett djur kan leva utan mat: Varg=200, Får=100.
+  </li>
+  <li>Tid för förökning: Varg=201, Får=101, Grästuvor=10. 
+
+    <p>
+      Detta intervall anger tid innan första förökning och tid mellan
+      förökning.
+
+
+</li>
+ <li>Antal vid start: Varg=10, Får=20, Grästuvor=40. Dessutom ska
+ hagen innehålla 40 staket (förutom de som utgör gräns).
+</li>
+ <li>Hagens dimensioner: Bredd 35, Höjd 24.</li>
+</ol>
+ 
+Programmet ska vara skrivet så att egenskapens värde bestäms
+på <em>ett</em> ställe. Det ska vara enkelt att ändra.
+
+
+<h2>Den givna koden</h2>
+
+Den givna koden innehåller bland annat
+<ul>
+  <li>en klass <a href="pasture/pasture/PastureGUI.java" >PastureGUI</a>
+  som ritar upp hagen med alla föremål och varelser,</li><p>
+  <li>en klass <a href="pasture/pasture/Pasture.java">Pasture</a> som håller
+reda på var i hagen de olika varelserna och föremålen befinner sig och</li><p>
+
+  <li>en klass <a href="pasture/pasture/Engine.java">Engine</a>
+  som driver simuleringen framåt genom att aktivera alla
+föremål och varelser i hagen.</li><p>
+  <li>Där finns också en klass <a href="pasture/pasture/Dummy.java">Dummy</a> som jag
+har lagt in för att du ska ha nåt att titta på innan du skapar egna
+medlemmar i hagen.</li>
+</ul>
+
+Tyvärr är klassen Dummy inget exempel på god OOP&mdash;det vore 
+bättre att ha två klasser, en för stationära dummies och en för
+rörliga. Jag ser helst att du inte använder kod från denna klass i
+din lösning.<p>
+
+
+För övrigt får du använda den givna koden som du vill. Modifiera den om du tycker
+att det är lämpligt. Vill du skriva en lösning som ej använder den
+givna koden är det OK (men det blir förstås mer arbete).<p>
+
+
+När du har varelser av olika klasser finns det en risk att koden i
+PastureGUI låter (tex) en varg gömma sig under en
+grästuva. Irriterande, men påverkar ej simuleringen. Om du vill kan du
+modifiera PastureGUI så att detta inte sker.
+
+
+
+<h2>Allmänna krav</h2>
+
+Parametrarna för synfält och snabbhet skall kunna anges när
+simuleringen påbörjas.  De parametrarna ska ha defaultvärden.  Se till
+att defaultvärdena på parametrarna är satta så att systemet blir
+någotsånär stabilt (så att det inte alltid slutar med att någon art
+dör ut eller översvämmar hagen). Det underlättar testkörning. <p></p>
+
+Invånarna i simuleringen måste givetvis ha en position för att
+systemet skall veta var de är, men de får inte nyttja denna position
+för att hålla sig inom hagen.  Att hagen är omringad av staket ska räcka
+för att invånarna inte skall bege sig utanför hagen, det behövs ingen
+(och får heller inte finnas någon) magisk vetskap om hagens
+storlek.</p><p>
+
+<p>
+I lösningen ska ingå en övergripande dokumentation som beskriver
+programmet i stort.  De olika klasserna och de viktigaste metoderna ska
+beskrivas. Om du har valt någon oväntad eller okonventionell lösning
+bör detta förstås förklaras.<p>
+
+Programmet bör vara fritt från duplicerad kod. Om du upptäcker att
+klasserna för till exempel vargar och får innehåller mycket likartad
+kod bör du försöka åtgärda detta.  Om du har svårt att hitta en
+lösning som ej duplicerar kod, kontakta mig (Sven-Olof) så ska jag
+försöka hjälpa.<p>
+
+Undvik också magiska nummer i din kod. Om du vill att en viss djurart
+ska kunna leva 200 glan utan mat, skriv inte talet 200 direkt i
+koden. Introducera istället en konstant som representerar denna
+information, tex<p>
+
+<tt>final int liveWithoutFood = 200;</tt>
+
+<p>
+
+
+<h2>Tips</h2>
+
+<a href="Param.java" >Detta program</a> med exempel på inmatning av
+parametrar kan vara av intresse.<p>
+
+Det kan vara lättare att först lösa uppgiften utan intelligens, dvs
+låta djuren röra sig slumpmässigt.<P>
+
+<a href="intelligens.html" >Ett förslag</a> på hur ett AI kan
+implementeras.<p>
+
+
+</p><h2>Er uppgift</h2>
+
+Följande ska implementeras:
+
+<ol>
+  <li>De olika djuren, växterna och föremålen i hagen, alltså vargar,
+      får, grästuvor och staket. Alla dessa måste implementera
+      gränssnittet <code>Entity</code> för att kunna ritas ut av
+      ramverket som är givet. Gränssnittet <code>Entity</code> är
+      också givet.
+
+  </li><p><li> Reglerna för förflyttning, alltså hur ofta ett djur
+  förflyttar sig och att den nya positionen är tillåten enligt denna
+  specifikation.
+
+  </li><p><li>Regler för hur djur och växter äter och fortplantar sig,
+  alltså när de får börja fortplanta sig, hur ofta och på vilka
+  platser.
+
+  </li><p><li>Intelligens hos får och vargar
+
+  </li><p><li>Initialvärden för de olika parametrarna ska kunna ges när
+  programmet startar. Detta kan göras på mer eller mindre sofistikerat
+  sätt </li></ol>
+
+<p align="center"><br><br><br>
+
+<b>Lycka till!</b> <br><br><br>
+
+Sven-Olof
+
+</p>
+
+      <hr>
+<address></address>
+
+</body></html>
+
+
+  

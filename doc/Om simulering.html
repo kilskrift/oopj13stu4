@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<!--
+%%% Denna specifikation är en modifiering av projektspecifikationen för
+%%% distanskursen Programvarukonstruktion II VT-99 som i sin tur
+%%% bygger på specifikationen för inlämningsuppgiften från kursen
+%%% Objektorienterad programmering HT-97. Originalspecifikationen för
+%%% OOP-97 är skriven av Mats Nordström (matsn@csd.uu.se) medan
+%%% specifikationen för PVK2-99 och modifieringen för OOP-99 är
+%%% skrivna av Robert Ottenhag (robott@csd.uu.se).
+%%% --------------------------------------------------------------------------
+%%% Omskriven för att passa projektspecifikationen för OOP-2002 av
+%%% Magnus Ågren och Jesper Wilhelmsson.
+%%% --------------------------------------------------------------------------
+%%% Än en gång hårt reviderad och omarbetad av Jesper W (jesperw@it.uu.se)
+%%% inför OOP HT-03.
+%%% --------------------------------------------------------------------------
+
+Än en gång anpassad för distanskursen Objektorienterad programmering
+med Java -04 av Sven-Olof Nyström och Magnus Ågren.
+-->
+
+<html> <head>
+<title>Om simulering</title>
+<link rel="stylesheet" type="text/css" title="style" href="../my-style.css"> 
+
+</head>
+
+<body>
+<h1>Allmänt om simulering</h1>
+
+För alla simuleringar gäller att man har en dynamisk modell av
+något system.
+Den dynamiska modellen består av objekt med tillstånd och
+beteende, där tillståndet hos ett objekt styr dess beteende.
+<p>
+
+Vid en simulering representeras objekten i modellen av
+objekt (i programspråket) med attribut och metoder.
+Attributen representerar de modellerade objektens tillstånd och
+metoderna representerar deras beteende baserat på aktuellt
+tillstånd. <p>
+
+En <em>kontinuerlig</em> simuleringstid tillåter att händelser kan
+planeras in att inträffa vid en godtycklig tidpunkt. En
+<em>diskret</em> simuleringstid hoppar stegvis framåt till en ny
+tidpunkt och med den kan händelser endast planeras in att
+inträffa vid dessa bestämda tidpunkter.
+
+
+<h3>Tickstyrd simulering</h3> Det ramverk som är utgångspunkten för er
+uppgift implementerar en tickstyrd simulering.  Där är tiden diskret
+och det finns en klocka som regelbundet skickar ut
+en tidssignal (ett tick) till alla objekt som deltar i
+simuleringen. <p>
+
+Simuleringsobjekten aktiveras när de får ett tick. De kan endast
+reagera på händelser i samband med att de får ett tick, vilket gör att
+intervallet mellan ticken som skickas ut måste anpassas till den
+kortaste längd som behövs för att alla händelser i simuleringen kan
+inträffa vid rätt tidpunkt enligt modellen.<p>
+
+När simuleringsobjekt aktiveras kan de kommunicera med andra
+simuleringsobjekt.  Alla simuleringsobjekt aktiveras logiskt sett vid
+samma tidpunkt (i en godtycklig ordning). Om det finns beroenden
+mellan olika simuleringsobjekt (tex en varg äter upp ett får) kan
+resultatet av simuleringen påverkas av i vilken ordning
+simuleringsobjekten aktiveras.<p>
+
+Tickstyrd simulering används ofta inom animering där de
+animerade objekten får uppdatera sin position vid bestämda
+tidpunkter. Det måste givetvis vara tillräckligt ofta för att
+lura ögat till att se en kontinuerlig rörelse.<p>
+
+<h3>Händelsestyrd simulering</h3>
+En alternativ lösning är att använda
+en händelsestyrd simulering. Där finns det en klocka som håller reda
+på aktuell simuleringstid och en
+<i>händelsekö</i>. Händelsekön är en kö av händelser ordnad i stigande
+ordning efter den tidpunkt då händelserna i kön skall inträffa.<p>
+
+Varje händelse i händelsekön är av något simuleringsobjekt
+inplanerad till att inträffa vid en viss tidpunkt i
+simuleringens framtid. När händelsen inträffar, vilket sker
+när den kommit främst i händelsekön, kommer först
+simuleringstiden att uppdateras till tidpunkten för den
+aktuella händelsen och därefter kommer det
+simuleringsobjekt som har planerat in händelsen att aktiveras.<p>
+
+Till skillnad från tickstyrd simulering kan simuleringsobjekt
+i händelsestyrd simulering planera in händelser till att
+inträffa vid en godtycklig framtida tidpunkt. Simuleringstiden
+är alltså kontinuerlig. Dessutom gäller att simuleringsobjekt
+i en händelsestyrd simulering endast aktiveras i samband med
+att en till dem relaterad händelse inträffar. I tickstyrd
+simulering aktiveras simuleringsobjekten även när de inte har
+något att göra.<p>
+
+
+
+<hr>
+<address></address>
+<!-- hhmts start --> Last modified: Tue Feb 19 13:45:21 MET 2008 <!-- hhmts end -->
+</body> </html>
