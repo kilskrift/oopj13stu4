@@ -1,0 +1,32 @@
+These files are intended to serve as a starting-point to assignment 5
+of the course Object-oriented programming in Java. I recommend that
+you first try to run it to make sure that the Java system finds all
+gif-files and everything else works.
+
+Files:
+
+ - Dummy.java  
+
+   Implements something that either moves randomly or stays
+   still. Appears as a question mark in the simulation. Do not make
+   this class a part of your solution!
+
+ - Engine.java  
+
+   Drives the simulation. Usually no need to change this file.
+
+ - Entity.java  
+
+   An interface. Any entity in the simulation should implement
+   this. (Some students change it to an abstract class.)
+
+ - PastureGUI.java  
+
+   The user interface. Usually no need to change this file.
+
+ - Pasture.java. The main class. You will probably need to add code
+   for initialization and setting parameters.
+
+For more details, see my notes.
+
+
