@@ -1,0 +1,21 @@
+Here I'll break down and maintain a backlog of items to implement. /kgm
+
+1. De olika djuren, växterna och föremålen i hagen, alltså vargar, får, grästuvor och staket. Alla dessa måste
+implementera gränssnittet Entity för att kunna ritas ut av ramverket som är givet. Gränssnittet Entity är också givet.
+
+
+2. Reglerna för förflyttning, alltså hur ofta ett djur förflyttar sig och att den nya positionen är tillåten enligt
+denna specifikation.
+
+
+3. Regler för hur djur och växter äter och fortplantar sig, alltså när de får börja fortplanta sig, hur ofta och på
+vilka platser.
+
+
+4. Intelligens hos får och vargar
+
+
+5. Initialvärden för de olika parametrarna ska kunna ges när programmet startar. Detta kan göras på mer eller
+mindre sofistikerat sätt
+
+
