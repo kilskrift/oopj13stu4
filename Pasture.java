@@ -15,10 +15,15 @@ public class Pasture {
 
     private final int   dummys = 20;
 
+    // contains all entities in the simulation world
     private final Set<Entity> world = 
         new HashSet<Entity>();
+
+    // contains a list of which entities are present at which point
     private final Map<Point, List<Entity>> grid = 
         new HashMap<Point, List<Entity>>();
+
+    // contains which point entities are at
     private final Map<Entity, Point> point 
         = new HashMap<Entity, Point>();
 
@@ -36,12 +41,12 @@ public class Pasture {
         /* The pasture is surrounded by a fence. Replace Dummy for
          * Fence when you have created that class */
         for (int i = 0; i < width; i++) {
-            addEntity(new Dummy(this, false), new Point(i,0));
-            addEntity(new Dummy(this, false), new Point(i, height - 1));
+            addEntity(new Fences(this), new Point(i,0));
+            addEntity(new Fences(this), new Point(i, height - 1));
         }
         for (int i = 1; i < height-1; i++) {
-            addEntity(new Dummy(this, false), new Point(0,i));
-            addEntity(new Dummy(this, false), new Point(width - 1,i));
+            addEntity(new Fences(this), new Point(0,i));
+            addEntity(new Fences(this), new Point(width - 1,i));
         }
 
         /* 
@@ -128,7 +133,7 @@ public class Pasture {
         Point oldPos = point.get(e);
         List<Entity> l = grid.get(oldPos);
         if (!l.remove(e)) 
-            throw new IllegalStateException("Inconsistent stat in Pasture");
+            throw new IllegalStateException("Inconsistent state in Pasture");
         /* We expect the entity to be at its old position, before we
            move, right? */
                 

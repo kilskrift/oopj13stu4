@@ -1,0 +1,5 @@
+Fences.java
+
+-- had to move initalisation of final pasture to constructor, due to compiler complaints re constructor type errors
+(implicit defintion of constructor w/o arguments??)
+
