@@ -1,5 +1,7 @@
 Here I'll break down and maintain a backlog of items to implement. /kgm
 
+Requirements specification:
+
 1. De olika djuren, växterna och föremålen i hagen, alltså vargar, får, grästuvor och staket. Alla dessa måste
 implementera gränssnittet Entity för att kunna ritas ut av ramverket som är givet. Gränssnittet Entity är också givet.
 
@@ -17,5 +19,54 @@ vilka platser.
 
 5. Initialvärden för de olika parametrarna ska kunna ges när programmet startar. Detta kan göras på mer eller
 mindre sofistikerat sätt
+
+Backlog:
+
+1. Som utvecklare vill jag läsa in mig på hur kodskelettet är uppbyggt, för att ha en god förståelse för hur jag kan
+modifiera programmet.
+1.1 Kolla hur Pasture/Engine/PastureGUI är uppbyggda med beroenden etc.
+1.2 Kolla hur Entiteter hanteras med handlingar, position osv.
+ok/kgm
+
+2. Som student vill jag skapa skapa staket & byta ut "ramen" kring simuleringen till dem.
+2.1 Skapa klassen Fences.
+2.2 Byt dummies mot fences i pastures konstuktor.
+
+3. Som student vill jag skapa djur som kan förflytta sig slumpmässigt, som ett första steg i implementationen av
+förflyttning. (krav 1,2)
+3.1 Skapa klassen Sheep
+3.2 Implementera slumpvis förflyttning.
+3.3 Implementera att man inte kan gå in i en ruta där det finns ett staket.
+3.4 Skapa klassen Wolf
+
+(Release krav 1,2).
+
+4. Som student vill jag skapa växter som kan föröka sig efter en viss tid har förflutit, som ett första steg i
+implementation av förökning & fortplanting.
+4.1 Skapa klassen Plant
+4.2 Implementera förökning efter viss tid.
+4.3 Implementera att förökning inte sker till upptagna rutor.
+
+5. Implementera att får kan äta växter på samma position.
+
+6. Implentnera att vargar kan äta får på samma position.
+
+(Release krav 3)
+
+7. Implementera rimliga strategier för att växa, äta, jaga & undvika fiender, samt fortplantning.
+7.1 Implementera att får går mot växter
+7.2 Implementera att vargar går mot får
+7.3 Implementera att får undviker vargar
+7.4 Implementera regler för fortplantning hos djur, växter
+
+(Release krav 4)
+
+9. Sätt upp & testa rimliga initialvärden för simuleringen
+
+(Release krav 5)
+
+10. Testa att implementationen täcker kraven, komplementera rapport/dokumentation för inlämning.
+
+(Inlämning)
 
 
