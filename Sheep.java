@@ -9,9 +9,9 @@ import java.util.List;
 // probably do not want to base your solution on this class.
 
 
-public class Dummy implements Entity {
+public class Sheep implements Entity {
     /** The icon of this entity. */
-    private final ImageIcon image = new ImageIcon("unknown.gif"); 
+    private final ImageIcon image = new ImageIcon("sheep.gif");
     /** The position of this entity. */
     private final Pasture pasture;
     /** The number of ticks this entity should get before moving. */
@@ -24,7 +24,7 @@ public class Dummy implements Entity {
      * its pasture.
      * @param pasture the pasture this entity should belong to.
      */
-    public Dummy(Pasture pasture) {
+    public Sheep(Pasture pasture) {
         this.pasture = pasture;
         this.alive = true;
         moveDelay = 10;
@@ -36,7 +36,7 @@ public class Dummy implements Entity {
      * @param pasture the pasture this entity should belong to.
      * @param position the position of this entity.
      */
-    public Dummy(Pasture pasture, boolean alive) {
+    public Sheep(Pasture pasture, boolean alive) {
         this.pasture   = pasture;
         this.alive     = alive;
         moveDelay      = 10;

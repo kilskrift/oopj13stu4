@@ -1,5 +1,19 @@
-Fences.java
+
+Backlog 2.x
+TODO finish writeup
+
+Skapade Fences.java
 
 -- had to move initalisation of final pasture to constructor, due to compiler complaints re constructor type errors
 (implicit defintion of constructor w/o arguments??)
+
+
+
+Backlog 3.x
+Jag började med att byta namn på Dummy till Sheep & lägga till rätt ikon.
+
+Nu känns som att det kommer att bli mycket kodduplikation i de olika klassernas implementationerna av interfacet Entity,
+så jag testar att göra om Entity till en abstrakt klass som tillhandahåller defaultimplementationer.
+
+Förflyttning etc. skulle sedan kunna implementeras genom t.ex. ett interface Mobile. Lägger till detta till backlog.
 

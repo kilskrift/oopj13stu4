@@ -31,12 +31,16 @@ ok/kgm
 2. Som student vill jag skapa skapa staket & byta ut "ramen" kring simuleringen till dem.
 2.1 Skapa klassen Fences.
 2.2 Byt dummies mot fences i pastures konstuktor.
+ok/kgm
 
 3. Som student vill jag skapa djur som kan förflytta sig slumpmässigt, som ett första steg i implementationen av
 förflyttning. (krav 1,2)
 3.1 Skapa klassen Sheep
 3.2 Implementera slumpvis förflyttning.
 3.3 Implementera att man inte kan gå in i en ruta där det finns ett staket.
+3.3b Refaktorera Entity till abstrakt klass med default-implementation av metoder från Entity
+3.3c Sheep implementerar interface Mobile?
+
 3.4 Skapa klassen Wolf
 
 (Release krav 1,2).

@@ -13,7 +13,7 @@ public class Pasture {
     private final int   width = 20;
     private final int   height = 20;
 
-    private final int   dummys = 20;
+    private final int   sheep = 20;
 
     // contains all entities in the simulation world
     private final Set<Entity> world = 
@@ -53,9 +53,9 @@ public class Pasture {
          * Now insert the right number of different entities in the
          * pasture.
          */
-        for (int i = 0; i < dummys; i++) {
-            Entity dummy = new Dummy(this, true);
-            addEntity(dummy, getFreePosition(dummy));
+        for (int i = 0; i < sheep; i++) {
+            Entity sheep = new Sheep(this, true);
+            addEntity(sheep, getFreePosition(dummy));
         }
 
         gui.update();
