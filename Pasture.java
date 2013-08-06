@@ -41,12 +41,12 @@ public class Pasture {
         /* The pasture is surrounded by a fence. Replace Dummy for
          * Fence when you have created that class */
         for (int i = 0; i < width; i++) {
-            addEntity(new Fences(this), new Point(i,0));
-            addEntity(new Fences(this), new Point(i, height - 1));
+            addEntity(new Fence(this), new Point(i,0));
+            addEntity(new Fence(this), new Point(i, height - 1));
         }
         for (int i = 1; i < height-1; i++) {
-            addEntity(new Fences(this), new Point(0,i));
-            addEntity(new Fences(this), new Point(width - 1,i));
+            addEntity(new Fence(this), new Point(0,i));
+            addEntity(new Fence(this), new Point(width - 1,i));
         }
 
         /* 
@@ -55,7 +55,7 @@ public class Pasture {
          */
         for (int i = 0; i < sheep; i++) {
             Entity sheep = new Sheep(this, true);
-            addEntity(sheep, getFreePosition(dummy));
+            addEntity(sheep, getFreePosition(sheep));
         }
 
         gui.update();

@@ -2,7 +2,7 @@
 Backlog 2.x
 TODO finish writeup
 
-Skapade Fences.java
+Skapade Fence.java
 
 -- had to move initalisation of final pasture to constructor, due to compiler complaints re constructor type errors
 (implicit defintion of constructor w/o arguments??)

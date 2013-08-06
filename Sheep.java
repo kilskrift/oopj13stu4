@@ -9,15 +9,12 @@ import java.util.List;
 // probably do not want to base your solution on this class.
 
 
-public class Sheep implements Entity {
-    /** The icon of this entity. */
-    private final ImageIcon image = new ImageIcon("sheep.gif");
-    /** The position of this entity. */
-    private final Pasture pasture;
+public class Sheep extends Entity {
+
     /** The number of ticks this entity should get before moving. */
     private int moveDelay;
 
-    private final boolean alive;
+    private boolean alive;
 
     /**
      * Creates a new instance of this class, with the given pasture as
@@ -25,9 +22,9 @@ public class Sheep implements Entity {
      * @param pasture the pasture this entity should belong to.
      */
     public Sheep(Pasture pasture) {
-        this.pasture = pasture;
-        this.alive = true;
-        moveDelay = 10;
+        super( pasture );
+
+        this.image = new ImageIcon("sheep.gif");
     }
 
     /**
@@ -37,9 +34,10 @@ public class Sheep implements Entity {
      * @param position the position of this entity.
      */
     public Sheep(Pasture pasture, boolean alive) {
-        this.pasture   = pasture;
+        this( pasture );
+
         this.alive     = alive;
-        moveDelay      = 10;
+        this.moveDelay      = 10;
     }
 
     /**
@@ -60,19 +58,6 @@ public class Sheep implements Entity {
             moveDelay = 10;
         }
     }
-    
-    /** 
-     * Returns the icon of this entity, to be displayed by the pasture
-     * gui. 
-     * @see PastureGUI
-     */
-    public ImageIcon getImage() { return image; }
-
-    /**
-     * Tests if this entity can be on the same position in the pasture
-     * as the given one.
-     */
-    public boolean isCompatible(Entity otherEntity) { return false; }
 
     /**
      * A general method for grabbing a random element from a

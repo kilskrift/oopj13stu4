@@ -29,7 +29,7 @@ modifiera programmet.
 ok/kgm
 
 2. Som student vill jag skapa skapa staket & byta ut "ramen" kring simuleringen till dem.
-2.1 Skapa klassen Fences.
+2.1 Skapa klassen Fence.
 2.2 Byt dummies mot fences i pastures konstuktor.
 ok/kgm
 
