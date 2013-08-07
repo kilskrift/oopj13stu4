@@ -100,3 +100,11 @@ Interface:t Multiply är rätt likt Mobile till sin uppbyggnad. Plant är på m�
 vore det tydligare att göra Animal till abstract, för att vara tydlig med att den inte är tänkt att implementera direkt?
 
 
+Backlog 5
+
+Jag började med att override:a isCompatible i får till att acceptera att får går på gräs. Loggar när de är på samma
+plats så länge, när får äter upp växter löser det troligen  problemet med att ikonerna skriver över varandra i GUI.
+
+
+
+

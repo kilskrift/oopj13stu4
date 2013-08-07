@@ -68,6 +68,14 @@ ok /kgm
 ok /kgm
 
 5. Implementera att får kan äta växter på samma position.
+5.1 Implementera att får kan stå på samma plats som växter
+ok /kgm
+
+5.2 Får kan äta växter
+5.3 Refaktorera så att det definieras en lista på kompatibla djur/klasser, skickas till Entity? från respektive klass.
+
+
+
 
 6. Implentnera att vargar kan äta får på samma position.
 
