@@ -3,9 +3,9 @@ import java.awt.*;
 /**
  * A new Animal() takes two arguments, first is the Pasture it belongs to, second is the time between moves
  */
-public class Animal extends Entity implements Mobile {
+public abstract class Animal extends Entity implements Mobile {
 
-    protected int moveInterval; // set in constructor by individual animals
+    private int moveInterval; // set in constructor by individual animals
     private int moveDelay;
 
     public Animal(Pasture pasture, int moveInterval ) {
