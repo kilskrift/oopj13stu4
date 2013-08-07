@@ -57,6 +57,11 @@ implementation av förökning & fortplanting.
 4.1 Skapa klassen Plant
 4.2 Implementera förökning efter viss tid.
 4.3 Implementera att förökning inte sker till upptagna rutor.
+ok /kgm
+
+4.4 plantor växer till slumpvis intilliggande ruta
+4.5 ta bort attributet alive från djuren
+4.6 skapa ett Breeding-interface som Plant implementerar
 
 5. Implementera att får kan äta växter på samma position.
 

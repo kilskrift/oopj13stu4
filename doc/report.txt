@@ -66,3 +66,11 @@ Troligen får jag lägga till något slags abstrakt strategimetod som anropas fr
 till denna för att differentiera hur djuren rör sig i framtiden? Lade in det senare som en task i backlog & commitade,
 nöjd med att ha nått mitt releasemål för kraven 1 & 2.
 
+Backlog 4
+
+Jag skapade en ny klass Plant som ärver från Entity. I den skapade jag sedan metoder som likt Mobile's metoder räknar
+ner tick tills dess det är dags för plantan att växa. Då skapar den en ny instans i en angränsande ruta i simuleringen.
+
+Attributet alive som används för förflyttning av djur verkar vara onödigt. Utan den borde Mobile kräva färre metoder?
+
+Borde bryta ut ett Interface för "växande"-egenskapen så att Plant fungerar likadant som Mobile i Entity::tick()

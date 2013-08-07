@@ -28,6 +28,11 @@ public abstract class Entity {
         if( this instanceof Mobile ) {
             ((Mobile)this).makeMove();
         }
+
+        // Plant?
+        if( this instanceof Plant ) {
+            ((Plant)this).doBreed();
+        }
     }
 
     /**

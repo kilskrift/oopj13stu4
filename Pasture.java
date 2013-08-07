@@ -15,6 +15,7 @@ public class Pasture {
 
     private final int   sheep = 20;
     private final int   wolves = 5;
+    private final int   plants = 2;
 
     // contains all entities in the simulation world
     private final Set<Entity> world = 
@@ -66,6 +67,13 @@ public class Pasture {
             Entity wolf = new Wolf(this, true);
             addEntity(wolf, getFreePosition(wolf));
         }
+
+        //plants
+        for (int i = 0; i < plants; i++) {
+            Entity plant = new Plant(this);
+            addEntity(plant, getFreePosition(plant));
+        }
+
 
         gui.update();
     }
