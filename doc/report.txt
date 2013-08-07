@@ -54,3 +54,15 @@ http://docs.oracle.com/javase/tutorial/reflect/member/methodInvocation.html
 
 Aha, det räcker att cast:a till rätt typ (Mobile) när man väl vet att det är rätt klass (instance of Mobile) i Entity.
 
+Backlog 3.4
+
+Jag skapade en ny klass Wolf genom att i princip kopiera innehållet i Sheep, men gjorde vargarna dubbelt så snabba.
+Därefter var det dags att extrahera gemensamma metoder. Jag testade att använda Refactor/Extract Superclass i mitt IDE,
+vilket gav mig en snygg dialogruta där jag kunde välja metoder & attribut att lyfta ut till superklassen. Jag lät de
+specifika inställningarna för hastighet (moveDelay) ligga kvar i konstruktorn till Wolf & Sheep, respektive, medan all
+annan kod hamnade i Animal.
+
+Troligen får jag lägga till något slags abstrakt strategimetod som anropas från makeMove
+till denna för att differentiera hur djuren rör sig i framtiden? Lade in det senare som en task i backlog & commitade,
+nöjd med att ha nått mitt releasemål för kraven 1 & 2.
+

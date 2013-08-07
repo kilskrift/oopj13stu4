@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
-import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,10 +8,7 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 
-public class Wolf extends Entity implements Mobile {
-
-    private boolean alive = true;
-    private int moveDelay = 10;
+public class Wolf extends Animal {
 
     /**
      * Creates a new instance of this class, with the given pasture as
@@ -38,43 +33,5 @@ public class Wolf extends Entity implements Mobile {
         this.moveDelay  = 5;
     }
 
-    // Movable methods
-
-    public boolean isAlive() {
-        return alive;
-    }
-
-    public int getMoveDelay() {
-        return moveDelay;
-    }
-
-    public void makeMove() {
-
-        if( isAlive() ) {
-            moveDelay--;
-        }
-
-        if( getMoveDelay() == 0) {
-            Point neighbour =
-                    getRandomMember(pasture.getFreeNeighbours(this));
-
-            if(neighbour != null)
-                pasture.moveEntity(this, neighbour);
-
-            moveDelay = 5;
-        }
-    }
-    /**
-     * A general method for grabbing a random element from a
-     * list. Does it belong in this class?
-     */
-    private static <X> X getRandomMember(java.util.List<X> c) {
-        if (c.size() == 0)
-            return null;
-
-        int n = (int)(Math.random() * c.size());
-
-        return c.get(n);
-    }
 
 }

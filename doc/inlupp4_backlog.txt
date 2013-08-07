@@ -48,6 +48,7 @@ ok /kgm
 
 3.4 Skapa klassen Wolf
 3.4b Refactor Sheep and Wolf to inherit from superclass Animal
+ok /kgm
 
 (Release krav 1,2).
 
@@ -65,6 +66,7 @@ implementation av förökning & fortplanting.
 
 7. Implementera rimliga strategier för att växa, äta, jaga & undvika fiender, samt fortplantning.
 7.1 Implementera att får går mot växter
+7.1a lägg till abstrakt strategimetod i Animal, anropa från makeMove, implementera för Sheep, Wolf?
 7.2 Implementera att vargar går mot får
 7.3 Implementera att får undviker vargar
 7.4 Implementera regler för fortplantning hos djur, växter
