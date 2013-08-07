@@ -85,7 +85,7 @@ Här skjöt jag mig först i foten och missade att sätta uttrycket inom parente
  från Math.random() från en double till 0 eller (osannolikt) 1, med följd att det blir samma beteende som tidigare i
  koden. Som tur var provkörde jag direkt & kunde se felet i simuleringen. Som alltid: var försiktig med dina casts :D
 
- Backlog 4.5
+Backlog 4.5
 
 I konstruktor för de olika djuren skickar jag med djurens hastighet till Animals konstuktor. Jag upptäckte att den
 konstanten måste deklareras som static, eftersom den skickas med i anropet till konstruktorn -- logiskt när man tänker
@@ -93,5 +93,10 @@ efter förstås.
 
 Annars var det mest en fråga om att ta bort onödiga metodanrop & snygga upp i koden till Mobile, Animal, se ändringar
 i commit på github //TODO länk till commit här.
+
+Backlog 4.6
+
+Interface:t Multiply är rätt likt Mobile till sin uppbyggnad. Plant är på många sätt en analog till Animal, så kanske
+vore det tydligare att göra Animal till abstract, för att vara tydlig med att den inte är tänkt att implementera direkt?
 
 

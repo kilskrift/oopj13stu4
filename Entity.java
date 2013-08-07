@@ -29,9 +29,9 @@ public abstract class Entity {
             ((Mobile)this).makeMove();
         }
 
-        // Plant?
-        if( this instanceof Plant ) {
-            ((Plant)this).doBreed();
+        // implements Multiply?
+        if( this instanceof Multiply ) {
+            ((Multiply)this).doMultiply();
         }
     }
 
