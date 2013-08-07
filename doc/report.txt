@@ -87,3 +87,11 @@ Här skjöt jag mig först i foten och missade att sätta uttrycket inom parente
 
  Backlog 4.5
 
+I konstruktor för de olika djuren skickar jag med djurens hastighet till Animals konstuktor. Jag upptäckte att den
+konstanten måste deklareras som static, eftersom den skickas med i anropet till konstruktorn -- logiskt när man tänker
+efter förstås.
+
+Annars var det mest en fråga om att ta bort onödiga metodanrop & snygga upp i koden till Mobile, Animal, se ändringar
+i commit på github //TODO länk till commit här.
+
+

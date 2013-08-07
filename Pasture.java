@@ -58,13 +58,13 @@ public class Pasture {
 
         // sheep
         for (int i = 0; i < sheep; i++) {
-            Entity sheep = new Sheep(this, true);
+            Entity sheep = new Sheep(this);
             addEntity(sheep, getFreePosition(sheep));
         }
 
         // wolves
         for (int i = 0; i < wolves; i++) {
-            Entity wolf = new Wolf(this, true);
+            Entity wolf = new Wolf(this);
             addEntity(wolf, getFreePosition(wolf));
         }
 

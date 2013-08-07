@@ -40,7 +40,6 @@ public abstract class Entity {
      * gui.
      * @see PastureGUI
      */
-
     public ImageIcon getImage() { return this.image; }
 
     /**

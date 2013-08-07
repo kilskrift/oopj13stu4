@@ -1,18 +1,18 @@
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: kgm
- * Date: 2013-08-07
- * Time: 11:44
- * To change this template use File | Settings | File Templates.
+ * A new Animal() takes two arguments, first is the Pasture it belongs to, second is the time between moves
  */
 public class Animal extends Entity implements Mobile {
-    protected boolean alive = true;
-    protected int moveDelay = 10;
 
-    public Animal(Pasture pasture) {
+    protected int moveInterval; // set in constructor by individual animals
+    private int moveDelay;
+
+    public Animal(Pasture pasture, int moveInterval ) {
         super(pasture);
+
+        this.moveInterval = moveInterval;
+        this.moveDelay = this.moveInterval;
     }
 
     /**
@@ -28,28 +28,16 @@ public class Animal extends Entity implements Mobile {
         return c.get(n);
     }
 
-    public boolean isAlive() {
-        return alive;
-    }
-
-    public int getMoveDelay() {
-        return moveDelay;
-    }
-
     public void makeMove() {
 
-        if( isAlive() ) {
-            moveDelay--;
-        }
-
-        if( getMoveDelay() == 0) {
+        if( this.moveDelay-- <= 0 ) {
             Point neighbour =
                     getRandomMember(pasture.getFreeNeighbours(this));
 
             if(neighbour != null)
                 pasture.moveEntity(this, neighbour);
 
-            moveDelay = 10;
+            this.moveDelay = this.moveInterval;
         }
     }
 }
