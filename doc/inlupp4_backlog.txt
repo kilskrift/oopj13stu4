@@ -47,6 +47,7 @@ ok /kgm
 ok /kgm
 
 3.4 Skapa klassen Wolf
+3.4b Refactor Sheep and Wolf to inherit from superclass Animal
 
 (Release krav 1,2).
 
