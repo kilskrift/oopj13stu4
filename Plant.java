@@ -21,7 +21,11 @@ public class Plant extends Entity {
             // free space adjacent?
             if( pasture.getFreeNeighbours(this).size() > 0 ) {
 
-                pasture.addEntity(new Plant(pasture), pasture.getFreeNeighbours(this).get(0) ); // TODO 0 => random
+                pasture.addEntity(new Plant(pasture),
+                        pasture.getFreeNeighbours(this).get(
+                                (int)(Math.random() * pasture.getFreeNeighbours(this).size())
+                        )
+                );
 
                 breedDelay = 20;
 

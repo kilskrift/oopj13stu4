@@ -74,3 +74,16 @@ ner tick tills dess det är dags för plantan att växa. Då skapar den en ny in
 Attributet alive som används för förflyttning av djur verkar vara onödigt. Utan den borde Mobile kräva färre metoder?
 
 Borde bryta ut ett Interface för "växande"-egenskapen så att Plant fungerar likadant som Mobile i Entity::tick()
+
+Backlog 4.4
+
+När jag tar ut "riktning" för nya plantor gjorde jag en cast till int på uttrycket
+
+(int)(Math.random() * pasture.getFreeNeighbours(this).size())
+
+Här skjöt jag mig först i foten och missade att sätta uttrycket inom parenterser, med följd att jag castade resultatet
+ från Math.random() från en double till 0 eller (osannolikt) 1, med följd att det blir samma beteende som tidigare i
+ koden. Som tur var provkörde jag direkt & kunde se felet i simuleringen. Som alltid: var försiktig med dina casts :D
+
+ Backlog 4.5
+

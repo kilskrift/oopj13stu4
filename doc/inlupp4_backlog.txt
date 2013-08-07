@@ -60,6 +60,7 @@ implementation av förökning & fortplanting.
 ok /kgm
 
 4.4 plantor växer till slumpvis intilliggande ruta
+ok /kgm
 4.5 ta bort attributet alive från djuren
 4.6 skapa ett Breeding-interface som Plant implementerar
 
