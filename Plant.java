@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class Plant extends Entity implements Multiply {
 
-    static final int multiplyInterval = 20;
+    static final int multiplyInterval = 200;
     private int multiplyDelay;
 
     public Plant(Pasture pasture) {

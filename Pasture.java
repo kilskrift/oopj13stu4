@@ -13,9 +13,9 @@ public class Pasture {
     private final int   width = 20;
     private final int   height = 20;
 
-    private final int   sheep = 20;
-    private final int   wolves = 5;
-    private final int   plants = 2;
+    private final int   sheep = 200;
+    private final int   wolves = 0;
+    private final int   plants = 1;
 
     // contains all entities in the simulation world
     private final Set<Entity> world = 

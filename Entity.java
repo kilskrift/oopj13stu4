@@ -33,6 +33,15 @@ public abstract class Entity {
         if( this instanceof Multiply ) {
             ((Multiply)this).doMultiply();
         }
+
+        // implements Herbivore
+        if( this instanceof Herbivore ) {
+            // do for all entities in this location
+
+            for( Entity cohabitant : pasture.getEntitiesAt( pasture.getPosition( this ) ) ) {
+                ((Herbivore)this).doFeed(cohabitant);
+            }
+        }
     }
 
     /**
