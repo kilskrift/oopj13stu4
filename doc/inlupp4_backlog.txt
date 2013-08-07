@@ -38,8 +38,13 @@ förflyttning. (krav 1,2)
 3.1 Skapa klassen Sheep
 3.2 Implementera slumpvis förflyttning.
 3.3 Implementera att man inte kan gå in i en ruta där det finns ett staket.
+ok, via Dummys implementation /kgm
+
 3.3b Refaktorera Entity till abstrakt klass med default-implementation av metoder från Entity
+ok /kgm
+
 3.3c Sheep implementerar interface Mobile?
+ok /kgm
 
 3.4 Skapa klassen Wolf
 

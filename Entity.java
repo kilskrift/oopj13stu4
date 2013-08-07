@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
-import java.util.*;
 
 /**
  * This is the superclass of all entities in the pasture simulation
@@ -21,8 +19,15 @@ public abstract class Entity {
 
     }
 
+    /** tick() uses introspection to call methods in entities implementing various interfaces:
+     *  Mobile executes makeMove().
+     */
+    public void tick()  {
 
-    public void tick() {
+        // implements Mobile?
+        if( this instanceof Mobile ) {
+            ((Mobile)this).makeMove();
+        }
     }
 
     /**

@@ -17,3 +17,40 @@ så jag testar att göra om Entity till en abstrakt klass som tillhandahåller d
 
 Förflyttning etc. skulle sedan kunna implementeras genom t.ex. ett interface Mobile. Lägger till detta till backlog.
 
+Jag skapade ett interface Mobile som definierar tre metoder, som i princip motsvarar attributen alive, moveDelay & den
+version av tick() som fanns i Dummy-klassen under namnet makeMove(). Tanken var att ifrån Entity köra den senare från
+tick om entiteten implementerar interfacet Mobile.
+
+Här hoppade jag snart i galen tunna när jag funderade på vad det jag ville uppnå kunde heta i java -- ordet Reflection
+fanns i bakhuvudet. Efter att ha läst på lite om reflection api i Java såg jag på flera håll varningar om att det var
+en avancerad teknik som sällan behövde användas. I följande kodsnutt försökte jag ta reda om en entitet implementerade
+Mobile:
+
+https://gist.github.com/kilskrift/e1b84f4e248ebb3228e3
+
+Vid försök att köra koden med ett anrop till makeMove på objektet fick jag dock följande fel
+
+java: unreported exception java.lang.NoSuchMethodException; must be caught or declared to be thrown
+
+Om man fångar undantaget ser man vid körning att metoderna finns där under Sheep-klassen, men de verkar inte gå att
+köra?
+
+...
+class Fence
+class Sheep
+instance of Mobile with class: class Sheep
+public void Sheep.makeMove()
+public int Sheep.getMoveDelay()
+private static java.lang.Object Sheep.getRandomMember(java.util.List)
+public boolean Sheep.isAlive()
+class Fence
+...
+
+Efter lite mer efterforskning hittade jag en bättre (läs: fungerande!) lösningen dold bakom betydelsen av "Reflection
+provides a means for invoking methods on a class. Typically, this would only be necessary if it is not possible to cast
+an instance of the class to the desired type in non-reflective code." på
+
+http://docs.oracle.com/javase/tutorial/reflect/member/methodInvocation.html
+
+Aha, det räcker att cast:a till rätt typ (Mobile) när man väl vet att det är rätt klass (instance of Mobile) i Entity.
+
