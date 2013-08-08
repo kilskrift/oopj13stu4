@@ -5,14 +5,18 @@ import java.awt.*;
  */
 public abstract class Animal extends Entity implements Mover {
 
-    private int moveInterval; // set in constructor by individual animals
-    private int moveDelay;
+    protected int moveInterval; // set in constructor, passed by individual animals
+    protected int moveDelay;
 
-    public Animal(Pasture pasture, int moveInterval ) {
+    protected int viewDistance; // set in constructor, passed by individual animals
+
+    public Animal(Pasture pasture, int moveInterval, int viewDistance ) {
         super(pasture);
 
         this.moveInterval = moveInterval;
         this.moveDelay = this.moveInterval;
+
+        this.viewDistance = viewDistance;
     }
 
     /**
@@ -29,6 +33,7 @@ public abstract class Animal extends Entity implements Mover {
     }
 
     // Mover
+    // default implementation is of a mindlessly rambling animal
     public void doMove() {
 
         if( this.moveDelay-- <= 0 ) {
