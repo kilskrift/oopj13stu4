@@ -137,7 +137,7 @@ Jag började med att läsa kravspecen igen för uppgift 4. Eftersom vargar bara 
 så börjar jag med att implementera dem.
 
 En entitet har en omgivning av 9 rutor den kan välja att stå på i nästa drag. Alltså behöver jag från var & en av dessa
-kontroller om det finns någon varg inom entitetens synfält. Efter att ha kollat lite på hur simuleringen hanterar
+kontrollera om det finns någon varg inom entitetens synfält. Efter att ha kollat lite på hur simuleringen hanterar
 positioner inser jag att det inte finns några hinder för att introducera godtyckliga värden på punkter i simuleringen,
 det finns inga gränser för världen utan den existerar som en mängd punkter där det finns entiteter.
 
@@ -149,5 +149,7 @@ position som har störst värde. Riktningen sparas & är bas för hur vargen gå
 gå till den ruta som har störst värde, går den i en slumpvis riktning (eg. borde den gå till näst högst poäng?).
 
 Let's rock.
+
+
 
 

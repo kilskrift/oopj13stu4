@@ -10,11 +10,11 @@ import java.awt.Point;
  */
 public class Pasture {
 
-    private final int   width = 20;
-    private final int   height = 20;
+    private final int   width = 4;
+    private final int   height = 4;
 
-    private final int   sheep = 200;
-    private final int   wolves = 0;
+    private final int   sheep = 1;
+    private final int   wolves = 1;
     private final int   plants = 1;
 
     // contains all entities in the simulation world
@@ -40,38 +40,60 @@ public class Pasture {
         Engine engine = new Engine(this);
         gui = new PastureGUI(width, height, engine);
 
-        /* The pasture is surrounded by a fence. Replace Dummy for
-         * Fence when you have created that class */
-        for (int i = 0; i < width; i++) {
-            addEntity(new Fence(this), new Point(i,0));
-            addEntity(new Fence(this), new Point(i, height - 1));
-        }
-        for (int i = 1; i < height-1; i++) {
-            addEntity(new Fence(this), new Point(0,i));
-            addEntity(new Fence(this), new Point(width - 1,i));
-        }
+        boolean testFlag =true;
 
-        /* 
-         * Now insert the right number of different entities in the
-         * pasture.
-         */
+        if( !testFlag ) {
 
-        // sheep
-        for (int i = 0; i < sheep; i++) {
+            /* The pasture is surrounded by a fence. Replace Dummy for
+             * Fence when you have created that class */
+            for (int i = 0; i < width; i++) {
+                addEntity(new Fence(this), new Point(i,0));
+                addEntity(new Fence(this), new Point(i, height - 1));
+            }
+            for (int i = 1; i < height-1; i++) {
+                addEntity(new Fence(this), new Point(0,i));
+                addEntity(new Fence(this), new Point(width - 1,i));
+            }
+
+            /*
+             * Now insert the right number of different entities in the
+             * pasture.
+             */
+
+            // sheep
+            for (int i = 0; i < sheep; i++) {
+                Entity sheep = new Sheep(this);
+                addEntity(sheep, getFreePosition(sheep));
+            }
+
+            // wolves
+            for (int i = 0; i < wolves; i++) {
+                Entity wolf = new Wolf(this);
+                addEntity(wolf, getFreePosition(wolf));
+
+            }
+
+            //plants
+            for (int i = 0; i < plants; i++) {
+                Entity plant = new Plant(this);
+                addEntity(plant, getFreePosition(plant));
+            }
+        }
+        // test playground
+        else {
             Entity sheep = new Sheep(this);
-            addEntity(sheep, getFreePosition(sheep));
-        }
+            addEntity(sheep, new Point(1,1));
 
-        // wolves
-        for (int i = 0; i < wolves; i++) {
             Entity wolf = new Wolf(this);
-            addEntity(wolf, getFreePosition(wolf));
-        }
+            addEntity(wolf, new Point(0,0));
 
-        //plants
-        for (int i = 0; i < plants; i++) {
-            Entity plant = new Plant(this);
-            addEntity(plant, getFreePosition(plant));
+            System.out.println( getEntitiesWithinDistance( getPosition(wolf), 1 ) );  // should be wolf only
+
+            Entity sheep2 = new Sheep(this);
+            addEntity(sheep2, new Point(0,1));
+
+            System.out.println( getEntitiesWithinDistance( getPosition(wolf), 1 ) );  // should be wolf, sheep2
+            System.out.println( getEntitiesWithinDistance( getPosition(wolf), 2 ) );  // all three
         }
 
 
@@ -229,6 +251,28 @@ public class Pasture {
     public Point getEntityPosition(Entity entity) {
         return point.get(entity);
     }
+
+
+    // all points w/entities
+    private Set <Point> getOccupiedPoints() {
+        return grid.keySet();
+    }
+
+    // all entities of a type within distance from point
+    public List<Entity> getEntitiesWithinDistance( Point origin, int maxDistance ) {
+
+        List<Entity> found = new ArrayList<Entity>();
+
+        for( Entity e : world ) {
+            System.out.println( origin.distance( this.getPosition(e) ) );
+            if( origin.distance( this.getPosition(e) ) <= maxDistance ) {
+                found.add( e );
+            }
+        }
+
+        return found;
+    }
+
 
 
     /** The method for the JVM to run. */
