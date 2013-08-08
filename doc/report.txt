@@ -133,4 +133,21 @@ i Plant, eftersom getFreeNeighbours() kollar "åt det hållet", tvärtemot vad j
 
 Dags att ta sig an krav 4, strategi för får & vargar.
 
+Jag började med att läsa kravspecen igen för uppgift 4. Eftersom vargar bara går mot sitt byte, utan att fly från något
+så börjar jag med att implementera dem.
+
+En entitet har en omgivning av 9 rutor den kan välja att stå på i nästa drag. Alltså behöver jag från var & en av dessa
+kontroller om det finns någon varg inom entitetens synfält. Efter att ha kollat lite på hur simuleringen hanterar
+positioner inser jag att det inte finns några hinder för att introducera godtyckliga värden på punkter i simuleringen,
+det finns inga gränser för världen utan den existerar som en mängd punkter där det finns entiteter.
+
+Alltså: för alla befolkade punkter, ta ut den delmängd som är inom synfältet från entitetens position. Poängsätt
+därefter alla 9 tänkbara punkter med ett kummulativt värde beroende på hur nära de är de olika bytesdjuren (får).
+
+Jag tänker att varje får får ett värde av 100/1+p, där p är avståndet till fåret. Därefter försöker vargen gå till den
+position som har störst värde. Riktningen sparas & är bas för hur vargen går om den inte ser några får. Kan inte vargen
+gå till den ruta som har störst värde, går den i en slumpvis riktning (eg. borde den gå till näst högst poäng?).
+
+Let's rock.
+
 
