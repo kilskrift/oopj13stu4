@@ -28,9 +28,25 @@ public class Engine implements ActionListener {
     public void actionPerformed(ActionEvent event) {
      
         List<Entity> queue = pasture.getEntities();
-        for (Entity e : queue) {
-            e.tick();
+
+        try {
+            for (Entity e : queue) {
+                e.tick();
+            }
+
+            // after all entities have acted, remove entities flagged as dead
+            for( Entity entity : queue ) {
+                if( ! entity.isAlive() ) {
+                    System.out.println( "  removing: " + entity );
+                    pasture.removeEntity( entity );
+                }
+            }
+
+        // may occur if we remove entities within tick(), thus flag for later removal
+        } catch( NullPointerException e ) {
+            System.out.println( "Engine: " + e );
         }
+
         pasture.refresh();
         time++;
     }

@@ -6,6 +6,10 @@ import javax.swing.*;
  * alla entities.
  */
 public abstract class Entity {
+
+    // set to false if the entity has died during a tick
+    private boolean alive;
+
     /** The icon of this entity. */
     protected ImageIcon image;
 
@@ -17,31 +21,42 @@ public abstract class Entity {
 
         this.image = new ImageIcon("unknown.gif");
 
+        this.alive = true;
     }
 
     /** tick() uses introspection to call methods in entities implementing various interfaces:
-     *  Mobile executes makeMove().
+     *  Mobile executes doMove().
      */
     public void tick()  {
 
-        // implements Mobile?
-        if( this instanceof Mobile ) {
-            ((Mobile)this).makeMove();
+        // implements Mover?
+        if( this instanceof Mover) {
+            ((Mover)this).doMove();
         }
 
-        // implements Multiply?
-        if( this instanceof Multiply ) {
-            ((Multiply)this).doMultiply();
+        // implements Breeder?
+        if( this instanceof Breeder) {
+            ((Breeder)this).doBreed();
         }
 
-        // implements Herbivore
-        if( this instanceof Herbivore ) {
+        // implements Feeder?
+        if( this instanceof Feeder ) {
             // do for all entities in this location
-
-            for( Entity cohabitant : pasture.getEntitiesAt( pasture.getPosition( this ) ) ) {
-                ((Herbivore)this).doFeed(cohabitant);
+            for( Entity cohabitant : pasture.getEntitiesAt(pasture.getPosition(this)) ) {
+                ((Feeder)this).doFeed(cohabitant);
             }
         }
+
+    }
+
+    // returns true iff the this.alive is true
+    public boolean isAlive() {
+        return this.alive;
+    }
+
+    // set this.alive to false
+    public void kill() {
+        this.alive = false;
     }
 
     /**
