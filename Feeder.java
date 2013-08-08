@@ -1,7 +1,7 @@
 /**
  * Implemented by Entities that feed on Plants
  */
-public interface Herbivore {
+public interface Feeder {
 
     public void doFeed( Entity cohabitant );
 }

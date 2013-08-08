@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class Plant extends Entity implements Multiply {
+public class Plant extends Entity implements Breeder {
 
     static final int multiplyInterval = 50;
     private int multiplyDelay;
@@ -19,7 +19,7 @@ public class Plant extends Entity implements Multiply {
      *  Implement movement strategy here.
      */
     @Override
-    public void doMultiply() {
+    public void doBreed() {
 
         if( multiplyDelay-- <= 0 ) {
             // free space adjacent?
@@ -31,7 +31,7 @@ public class Plant extends Entity implements Multiply {
                         )
                 );
 
-                this.multiplyDelay = this.multiplyInterval;
+                this.multiplyDelay = multiplyInterval;
 
             }
         }

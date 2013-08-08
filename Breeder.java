@@ -1,5 +1,5 @@
 /** Implemented by all multiplying (growing, breeding) entities */
 
-public interface Multiply {
-    public void doMultiply();
+public interface Breeder {
+    public void doBreed();
 }

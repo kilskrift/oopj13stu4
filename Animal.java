@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * A new Animal() takes two arguments, first is the Pasture it belongs to, second is the time between moves
  */
-public abstract class Animal extends Entity implements Mobile {
+public abstract class Animal extends Entity implements Mover {
 
     private int moveInterval; // set in constructor by individual animals
     private int moveDelay;
@@ -28,7 +28,8 @@ public abstract class Animal extends Entity implements Mobile {
         return c.get(n);
     }
 
-    public void makeMove() {
+    // Mover
+    public void doMove() {
 
         if( this.moveDelay-- <= 0 ) {
             Point neighbour =
