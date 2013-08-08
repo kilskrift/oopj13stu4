@@ -105,6 +105,32 @@ Backlog 5
 Jag började med att override:a isCompatible i får till att acceptera att får går på gräs. Loggar när de är på samma
 plats så länge, när får äter upp växter löser det troligen  problemet med att ikonerna skriver över varandra i GUI.
 
+Efter att ha felsökt varför fåren inte ville gå på plantor lade jag till en regel om att djur var kompatibla med växter
+i Plant, eftersom getFreeNeighbours() kollar "åt det hållet", tvärtemot vad jag tänkte när jag skrev regeln som lät
+ växter vara kompatibla med får (dvs. de kan växa in i en ruta med ett får). Nu fungerar förflyttning som det skall.
 
+ Därefter skapade jag ett interface Herbivore som fåren implementerar, med en metod som tar bort växter som finns på
+  samma plats som ett får. Metoden anropas inifrån tick(), något jag fick anlending återkomma till senare.
+
+ Nu såg simuleringen bra ut & jag började implementera vargar. Det visade sig att fungera att återanvända Herbivore från
+ fåren, så jag bytte namn på det & även övriga interface så att de blev mer konsistenta. Namngivning är överlag svårt,
+ och jag vet med mig att jag kanske är överdrivet petig.
+
+ Nu såg det i alla fall bra ut med får som åt växter, och vargar som åt får -- dags för nästa bugg att visa
+ sig, såklart -- jag fick det fruktade NullPointerException. Eftersom jag itererade över listor av objekt började jag
+  att undersöka dem, med loggning till konsollen av vilka entiteter som fanns i postition när de togs bort -- jag hade
+  en aning om att t.ex. vargar åt upp får som sedan åt plantor? Nu låg de metodanropen i "rätt ordning", så jag funderade
+  lite till. Kanske kunde jag inte lita på att mina utskrifter var sekventiella? För säkerhets skull, och även för att
+  simuleringen skulle vara konsistent (alla entiteter agerar "samtidigt" i varje klick) lade jag tillbaka alive-flaggan
+  i Entity & avslutade sedan varje tick() med att göra remove på flaggade växter & får, efter att de agerat. Men alas,
+  felet kvarstod! Dags för en kopp kaffe på balkongen.
+
+  Efter paus läste jag felmeddelandet igen. Aha, felanropet kom från AWT (som ju genererar eventen som triggar tick() på
+  respektive entitet, kanske ligger felet i GUI? Efter en snabb titt i Engine inser jag att där finns också en lista på
+  entiteter som itereras över. Självklart är det inte i slutet av varje tick() jag skall ta bort flaggade entiteter,
+  utan efter att samtliga entiter har gåtts igenom och anropats tick() på från Engine. Flyttade in koden dit & ser till
+  att fånga NullPointerException med loggning ifall felet skulle återkomma i framtiden.
+
+Dags att ta sig an krav 4, strategi för får & vargar.
 
 

@@ -72,12 +72,11 @@ ok /kgm
 ok /kgm
 
 5.2 Får kan äta växter
-5.3 Refaktorera så att det definieras en lista på kompatibla djur/klasser, skickas till Entity? från respektive klass.
-
-
-
+ok /kgm
 
 6. Implentnera att vargar kan äta får på samma position.
+ok /kgm
+
 
 (Release krav 3)
 
@@ -99,3 +98,5 @@ ok /kgm
 (Inlämning)
 
 
+Nice to have:
+5.3 Refaktorera så att det definieras en lista på kompatibla djur/klasser, skickas till Entity? från respektive klass.

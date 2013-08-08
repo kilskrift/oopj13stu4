@@ -45,6 +45,7 @@ public class Engine implements ActionListener {
         // may occur if we remove entities within tick(), thus flag for later removal
         } catch( NullPointerException e ) {
             System.out.println( "Engine: " + e );
+            System.exit(99); // also, kill simulation if errors occur!
         }
 
         pasture.refresh();
