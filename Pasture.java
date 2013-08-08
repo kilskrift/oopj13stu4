@@ -13,7 +13,7 @@ public class Pasture {
     private final int   width = 4;
     private final int   height = 4;
 
-    private final int   sheep = 1;
+    private final int   sheep = 2;
     private final int   wolves = 1;
     private final int   plants = 1;
 
@@ -42,7 +42,7 @@ public class Pasture {
 
         boolean testFlag =true;
 
-        if( !testFlag ) {
+        if( !false ) {
 
             /* The pasture is surrounded by a fence. Replace Dummy for
              * Fence when you have created that class */
@@ -94,6 +94,8 @@ public class Pasture {
 
             System.out.println( getEntitiesWithinDistance( getPosition(wolf), 1 ) );  // should be wolf, sheep2
             System.out.println( getEntitiesWithinDistance( getPosition(wolf), 2 ) );  // all three
+
+            System.out.println( getAllNeighbours( new Point( 0,0 )));
         }
 
 
@@ -239,6 +241,22 @@ public class Pasture {
         return free;
     }
 
+    // collect all Points adjacent to origin, inclusive
+    public List<Point> getAllNeighbours( Point origin ) {
+        List<Point> surrounding = new ArrayList<Point>();
+
+        int originX = origin.x;
+        int originY = origin.y;
+
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                Point p = new Point(originX + x, originY + y);
+                surrounding.add(p);
+            }
+        }
+        return surrounding;
+    }
+
     private boolean freeSpace(Point p, Entity e) {
                               
         List <Entity> l = grid.get(p);
@@ -264,7 +282,7 @@ public class Pasture {
         List<Entity> found = new ArrayList<Entity>();
 
         for( Entity e : world ) {
-            System.out.println( origin.distance( this.getPosition(e) ) );
+            //System.out.println( origin.distance( this.getPosition(e) ) );
             if( origin.distance( this.getPosition(e) ) <= maxDistance ) {
                 found.add( e );
             }
@@ -272,6 +290,8 @@ public class Pasture {
 
         return found;
     }
+
+
 
 
 
