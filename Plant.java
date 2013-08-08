@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class Plant extends Entity implements Multiply {
 
-    static final int multiplyInterval = 200;
+    static final int multiplyInterval = 50;
     private int multiplyDelay;
 
     public Plant(Pasture pasture) {
@@ -37,5 +37,21 @@ public class Plant extends Entity implements Multiply {
         }
 
     }
+
+
+    @Override
+    /**
+     * Tests if this entity can be on the same position in the pasture
+     * as the given one.
+     */
+    public boolean isCompatible(Entity otherEntity) {
+        if( otherEntity instanceof Animal )      {      // else Animals won't step on plants
+            return true;
+        }
+
+        // default not compatible
+        return false;
+    }
+
 
 }
